@@ -1,11 +1,11 @@
 import React from 'react';
 import MarkerPin from './placeholder.png';
 
-const Marker = () => {
+const Marker = (props) => {
 
   return (
-      <div style={{ position: 'absolute', transform: 'translate(-50%, -50%)' }}>
-        <img src={MarkerPin}
+      <div title={props.name} style={{ position: 'absolute', transform: 'translate(-50%, -50%)', cursor: 'pointer' }}>
+        <img src={MarkerPin} alt={`Location of ${props.name}`}
         
         />
       </div>

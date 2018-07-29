@@ -32,6 +32,7 @@ class MapContainer extends React.Component {
             lat={location.lat}
             lng={location.lng}
             name={location.name}
+            title={location.name}
             location={location}
           />
         ))}
