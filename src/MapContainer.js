@@ -20,7 +20,8 @@ class MapContainer extends React.Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
 
-          options={{ styles: this.props.style
+          options={{ 
+            styles: this.props.style
           }}
         >
 
