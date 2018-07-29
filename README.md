@@ -1,3 +1,6 @@
+TODO
+Make a part in readme file explaining how to run your application in production mode cause that's the only way the service worker will work.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

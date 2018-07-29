@@ -1,15 +1,19 @@
 import React from 'react';
 import MarkerPin from './placeholder.png';
 
-const Marker = (props) => {
+class Marker extends React.Component {
 
-  return (
-      <div title={props.name} style={{ position: 'absolute', transform: 'translate(-50%, -50%)', cursor: 'pointer' }}>
-        <img src={MarkerPin} alt={`Location of ${props.name}`}
+  
+
+  render(){
+    return (
+      <div title={this.props.name} style={{ position: 'absolute', transform: 'translate(-50%, -100%)', cursor: 'pointer' }}>
+        <img onClick={()=>this.props.openInfoWindow(this.props.name, this.props.lat, this.props.lng)} src={MarkerPin} alt={`Location of ${this.props.name}`}/>
         
-        />
       </div>
     );
+  }
+  
 }
 
 export default Marker;

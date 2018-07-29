@@ -37,7 +37,14 @@ class App extends React.Component {
         lat: 52.232222,
         lng: 20.980833
       }
-    ]
+    ],
+
+    openedInfoWindow: []
+
+  }
+
+  openInfoWindow = (name, lat, lng) => {
+    this.setState({openedInfoWindow: [name, lat, lng]})
   }
 
   render() {
@@ -46,6 +53,9 @@ class App extends React.Component {
         <MapContainer
           style = {mapStyle}
           locations = {this.state.locations}
+          openedInfoWindow = {this.state.openedInfoWindow}
+          openInfoWindow = {this.openInfoWindow}
+          logSomething = {this.logSomething}
         />
       </div>
     );

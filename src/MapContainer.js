@@ -1,6 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker.js'
+import InfoWindow from './InfoWindow.js';
  
 class MapContainer extends React.Component {
   static defaultProps = {
@@ -32,11 +33,32 @@ class MapContainer extends React.Component {
             lat={location.lat}
             lng={location.lng}
             name={location.name}
-            title={location.name}
-            location={location}
-          />
+            logSomething={this.props.logSomething}
+            openedInfoWindow={this.openedInfoWindow}
+            openInfoWindow = {this.props.openInfoWindow}
+        />
         ))}
+
         
+          
+      
+
+        {this.props.openedInfoWindow.length > 0 &&(
+          <InfoWindow
+          lat={this.props.openedInfoWindow[1]}
+          key={this.props.openedInfoWindow[0]}
+          lng={this.props.openedInfoWindow[2]}
+          name={this.props.openedInfoWindow[0]}
+          
+        />
+        )}
+
+        
+        
+        
+
+        
+
 
         </GoogleMapReact>
       </div>
