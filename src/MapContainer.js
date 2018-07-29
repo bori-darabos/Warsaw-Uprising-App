@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import Marker from './Marker.js'
  
 class MapContainer extends React.Component {
   static defaultProps = {
@@ -25,6 +26,15 @@ class MapContainer extends React.Component {
           }}
         >
 
+        {this.props.locations.map(location => (
+          <Marker
+            key={location.id}
+            lat={location.lat}
+            lng={location.lng}
+            name={location.name}
+            location={location}
+          />
+        ))}
         
 
         </GoogleMapReact>
