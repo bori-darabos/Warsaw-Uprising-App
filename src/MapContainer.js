@@ -4,10 +4,11 @@ import GoogleMapReact from 'google-map-react';
 class MapContainer extends React.Component {
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33
+      lat: 52.229676,
+      lng: 21.012229
+      
     },
-    zoom: 11
+    zoom: 13
   };
  
   render() {
@@ -18,7 +19,13 @@ class MapContainer extends React.Component {
           bootstrapURLKeys={{ key: 'AIzaSyD9nEz4ZJK4zM41jMmz8nEXOWnia9bw-Qc' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
+
+          options={{ styles: this.props.style
+          }}
         >
+
+        
+
         </GoogleMapReact>
       </div>
     );
