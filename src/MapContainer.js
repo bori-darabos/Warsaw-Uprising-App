@@ -13,6 +13,8 @@ class MapContainer extends React.Component {
     zoom: 13
   };
  
+  
+
   render() {
     return (
       // Important! Always set the container height explicitly
@@ -27,7 +29,7 @@ class MapContainer extends React.Component {
           }}
         >
 
-        {this.props.locations.map(location => (
+        {this.props.chosenLocations.length > 0 && this.props.chosenLocations.map(location => (
           <Marker
             key={location.id}
             lat={location.lat}

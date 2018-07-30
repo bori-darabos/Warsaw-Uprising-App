@@ -43,7 +43,11 @@ class App extends React.Component {
 
     openedInfoWindow: [],
 
-    isMenuVisible: false
+    isMenuVisible: false,
+
+    searchSomething: false,
+
+    chosenLocations: []
 
   }
 
@@ -63,6 +67,38 @@ class App extends React.Component {
     }
   }
 
+
+
+  search = (query) => {
+    if(query){
+      this.setState({searchSomething: true})
+    } else {
+      this.setState({searchSomething: false})
+    }
+    let locationsToShow = []
+    if(this.state.searchSomething){
+     
+      this.state.locations.map(function(location){
+        if(location.name.includes(query)){
+          locationsToShow.push(location)
+          
+        } else {
+          console.log('nie ma')
+        }
+      }, this)
+    } else {
+      this.setState({chosenLocations: this.state.locations})
+    }
+    if(locationsToShow.length > 0) {
+      this.setState({chosenLocations: locationsToShow});
+    }
+    
+  }
+
+ componentDidMount(){
+   this.search();
+ }
+
   render() {
     return (
       <div className="App">
@@ -72,7 +108,9 @@ class App extends React.Component {
         />
 
         {this.state.isMenuVisible && (
-          <Menu/>
+          <Menu
+            search={this.search}
+          />
         )}
 
         <MapContainer
@@ -82,6 +120,7 @@ class App extends React.Component {
           openInfoWindow = {this.openInfoWindow}
           logSomething = {this.logSomething}
           closeInfoWindow = {this.closeInfoWindow}
+          chosenLocations = {this.state.chosenLocations}
         />
       </div>
     );

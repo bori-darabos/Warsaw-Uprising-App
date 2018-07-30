@@ -15,13 +15,14 @@ class Menu extends React.Component{
             zIndex: '999'
         }}>
 
-            <input type='text' placeholder='Search...' style={{
+            <input onChange={(e) => this.props.search(e.target.value)} type='text' placeholder='Search...' style={{
                 background: 'none',
                 border: 'none',
                 width: '90%',
                 height: '30px',
                 marginTop: '10px',
-                borderBottom: '1px solid red'
+                borderBottom: '1px solid red',
+                color: '#fff'
             }}/>
             
         </nav>
