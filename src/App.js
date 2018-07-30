@@ -3,6 +3,7 @@ import './App.css';
 import MapContainer from './MapContainer';
 import mapStyle from './mapStyle.json'
 import Header from './Header';
+import Menu from './Menu.js'
 
 class App extends React.Component {
 
@@ -57,6 +58,8 @@ class App extends React.Component {
       <div className="App">
 
         <Header/>
+
+        <Menu/>
 
         <MapContainer
           style = {mapStyle}
