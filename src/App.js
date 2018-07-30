@@ -70,31 +70,46 @@ class App extends React.Component {
 
 
   search = (query) => {
+    // This function can be invoked with an argument(query) or without. We can check this in this.state.searchSomething
     if(query){
       this.setState({searchSomething: true})
     } else {
       this.setState({searchSomething: false})
     }
+
+    //We use this array to store locations that match the search results
     let locationsToShow = []
+
+    //If function was invoked with argument(query)
     if(this.state.searchSomething){
      
+      //Map trough all locations and...
       this.state.locations.map(function(location){
-        if(location.name.includes(query)){
+        if(location.name.search(new RegExp(query, "i")) >= 0){
+          //...if they match to query, add them to the locationsToShow array
           locationsToShow.push(location)
-          
+
+          //If there is no location with provided query remove all markers from the map
         } else {
-          console.log('nie ma')
+            this.setState({chosenLocations: []})
         }
       }, this)
-    } else {
+    }
+
+    //If function was invoked without an argument...
+    else {
+      //...show all locations on the map
       this.setState({chosenLocations: this.state.locations})
     }
+
+    //Save the searched locations in state
     if(locationsToShow.length > 0) {
       this.setState({chosenLocations: locationsToShow});
     }
     
   }
 
+ //Call search function to show all markers on the map before user use search functionality 
  componentDidMount(){
    this.search();
  }
