@@ -13,6 +13,7 @@ class InfoWindow extends React.Component{
         }}>
   
         <h2 style={{color: 'red'}}>{this.props.name}</h2>
+        <button onClick={this.props.closeInfoWindow}>Close</button>
   
         </div>
       );

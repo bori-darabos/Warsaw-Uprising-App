@@ -49,7 +49,7 @@ class MapContainer extends React.Component {
           key={this.props.openedInfoWindow[0]}
           lng={this.props.openedInfoWindow[2]}
           name={this.props.openedInfoWindow[0]}
-          
+          closeInfoWindow = {this.props.closeInfoWindow}
         />
         )}
 

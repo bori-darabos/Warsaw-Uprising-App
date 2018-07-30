@@ -47,6 +47,10 @@ class App extends React.Component {
     this.setState({openedInfoWindow: [name, lat, lng]})
   }
 
+  closeInfoWindow = () => {
+    this.setState({openedInfoWindow: []})
+  }
+
   render() {
     return (
       <div className="App">
@@ -56,6 +60,7 @@ class App extends React.Component {
           openedInfoWindow = {this.state.openedInfoWindow}
           openInfoWindow = {this.openInfoWindow}
           logSomething = {this.logSomething}
+          closeInfoWindow = {this.closeInfoWindow}
         />
       </div>
     );
