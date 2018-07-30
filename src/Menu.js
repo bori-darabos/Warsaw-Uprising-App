@@ -24,6 +24,12 @@ class Menu extends React.Component{
                 borderBottom: '1px solid red',
                 color: '#fff'
             }}/>
+
+            <ul style={{listStyle: 'none', padding: '0'}}>
+                {this.props.chosenLocations.map(location => (
+                    <li onClick={()=>this.props.openInfoWindow(location.name, location.lat, location.lng)} key={location.id} style={{color: '#fff', margin: '15px 5px'}}>{location.name}</li>
+                ))}
+            </ul>    
             
         </nav>
 

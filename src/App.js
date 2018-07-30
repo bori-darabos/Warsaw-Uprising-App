@@ -77,7 +77,7 @@ class App extends React.Component {
       this.setState({searchSomething: false})
     }
 
-    //We use this array to store locations that match the search results
+    //We'll use this array to store locations that match the search results
     let locationsToShow = []
 
     //If function was invoked with argument(query)
@@ -96,7 +96,7 @@ class App extends React.Component {
       }, this)
     }
 
-    //If function was invoked without an argument...
+    //If function was invoked without an argument... (for example - when the app starts)
     else {
       //...show all locations on the map
       this.setState({chosenLocations: this.state.locations})
@@ -118,16 +118,21 @@ class App extends React.Component {
     return (
       <div className="App">
 
+        {/*Render the Header component*/}
         <Header
           toggleMenuVisibility = {this.toggleMenuVisibilty}
         />
 
+        {/*If menu should be visible render the Menu component*/}
         {this.state.isMenuVisible && (
           <Menu
             search={this.search}
+            chosenLocations={this.state.chosenLocations}
+            openInfoWindow={this.openInfoWindow}
           />
         )}
 
+        {/* Render the MapContainer component */}
         <MapContainer
           style = {mapStyle}
           locations = {this.state.locations}
