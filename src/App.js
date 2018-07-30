@@ -41,7 +41,9 @@ class App extends React.Component {
       }
     ],
 
-    openedInfoWindow: []
+    openedInfoWindow: [],
+
+    isMenuVisible: false
 
   }
 
@@ -53,13 +55,25 @@ class App extends React.Component {
     this.setState({openedInfoWindow: []})
   }
 
+  toggleMenuVisibilty = () => {
+    if(this.state.isMenuVisible){
+      this.setState({isMenuVisible: false})
+    } else {
+      this.setState({isMenuVisible: true})
+    }
+  }
+
   render() {
     return (
       <div className="App">
 
-        <Header/>
+        <Header
+          toggleMenuVisibility = {this.toggleMenuVisibilty}
+        />
 
-        <Menu/>
+        {this.state.isMenuVisible && (
+          <Menu/>
+        )}
 
         <MapContainer
           style = {mapStyle}

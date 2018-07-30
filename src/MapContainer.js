@@ -39,10 +39,6 @@ class MapContainer extends React.Component {
         />
         ))}
 
-        
-          
-      
-
         {this.props.openedInfoWindow.length > 0 &&(
           <InfoWindow
           lat={this.props.openedInfoWindow[1]}
@@ -52,13 +48,6 @@ class MapContainer extends React.Component {
           closeInfoWindow = {this.props.closeInfoWindow}
         />
         )}
-
-        
-        
-        
-
-        
-
 
         </GoogleMapReact>
       </div>

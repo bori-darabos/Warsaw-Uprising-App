@@ -25,7 +25,7 @@ class Header extends React.Component{
 
         </h1>
 
-        <button style={{width: '50px', height:'100%', background: 'none', border: 'none', cursor: 'pointer', marginLeft: '10px'}}>
+        <button onClick={this.props.toggleMenuVisibility} style={{width: '50px', height:'100%', background: 'none', border: 'none', cursor: 'pointer', marginLeft: '10px'}}>
           <img src={menu} alt='' style={{width: '100%', height:'100%'}}/>
         </button>
 
