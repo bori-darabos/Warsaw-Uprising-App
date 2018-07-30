@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import mapStyle from './mapStyle.json'
+import Header from './Header';
 
 class App extends React.Component {
 
@@ -54,6 +55,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+
+        <Header/>
+
         <MapContainer
           style = {mapStyle}
           locations = {this.state.locations}
