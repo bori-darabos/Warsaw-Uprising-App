@@ -13,8 +13,6 @@ class MapContainer extends React.Component {
     zoom: 13
   };
  
-  
-
   render() {
     return (
       // Important! Always set the container height explicitly

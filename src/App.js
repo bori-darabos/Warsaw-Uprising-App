@@ -13,31 +13,36 @@ class App extends React.Component {
         name: 'Monument to the Heroes of Warsaw',
         id: 'mon1',
         lat: 52.245833,
-        lng: 21.009167
+        lng: 21.009167,
+        nameForWikiURL: 'Monument_to_the_Heroes_of_Warsaw'
       },
       {
         name: 'The Little Insurrectionist',
         id: 'mon2',
         lat: 52.249722,
-        lng: 21.009444
+        lng: 21.009444,
+        nameForWikiURL: 'Ma%C5%82y_Powstaniec'
       },
       {
         name: 'Warsaw Uprising Monument',
         id: 'mon3',
         lat: 52.249444,
-        lng: 21.005833
+        lng: 21.005833,
+        nameForWikiURL: 'Warsaw_Uprising_Monument'
       },
       {
         name: 'Monument to Victims of the Wola Massacre',
         id: 'mon4',
         lat: 52.238694,
-        lng: 20.983514
+        lng: 20.983514,
+        nameForWikiURL: 'Monument_to_Victims_of_the_Wola_Massacre'
       },
       {
         name: 'Warsaw Uprising Museum',
         id: 'mon5',
         lat: 52.232222,
-        lng: 20.980833
+        lng: 20.980833,
+        nameForWikiURL: 'Warsaw_Uprising_Museum'
       }
     ],
 
@@ -109,10 +114,28 @@ class App extends React.Component {
     
   }
 
- //Call search function to show all markers on the map before user use search functionality 
- componentDidMount(){
-   this.search();
- }
+    //This function getting an article about location and save the html code in ...?
+    getArticle = (nameOfLocation) => {
+
+      fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts&titles=${nameOfLocation}&exintro=1`)
+
+      .then(result => {
+        return result.json()
+       })
+
+       .then(resultArticle => {
+
+        let article = resultArticle.query.pages[Object.keys(resultArticle.query.pages)[0]].extract;
+        console.log(article);
+
+       })
+
+    }
+
+  //Call search function to show all markers on the map before user use search functionality 
+  componentDidMount(){
+    this.search();
+  }
 
   render() {
     return (
