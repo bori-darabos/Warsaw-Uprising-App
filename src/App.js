@@ -4,6 +4,7 @@ import MapContainer from './MapContainer';
 import mapStyle from './mapStyle.json'
 import Header from './Header';
 import Menu from './Menu.js'
+import InfoWindow from './InfoWindow';
 
 class App extends React.Component {
 
@@ -56,6 +57,7 @@ class App extends React.Component {
 
   }
 
+  // This function open correct InfoWindow
   openInfoWindow = (name, lat, lng) => {
     this.setState({openedInfoWindow: [name, lat, lng]})
   }
@@ -64,6 +66,7 @@ class App extends React.Component {
     this.setState({openedInfoWindow: []})
   }
 
+  // Show / hide menu 
   toggleMenuVisibilty = () => {
     if(this.state.isMenuVisible){
       this.setState({isMenuVisible: false})
