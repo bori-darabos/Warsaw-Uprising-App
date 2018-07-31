@@ -34,3 +34,10 @@ nav ul li {
         width: 100vw;
     }
 }
+
+button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

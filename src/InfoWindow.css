@@ -1,5 +1,10 @@
 .info-window {
     padding: 10px;
+    width: 400px;
+    height: 200px;
+    background-color: #000;
+    position: absolute;
+    transform: translate(-50%, -108%);
 }
 
 .info-window h2 {
@@ -17,4 +22,12 @@
 
 .info-window article p {
     padding: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .info-window {
+        width: 90vw;
+    }
+
+    
 }

@@ -4,8 +4,6 @@ import MapContainer from './MapContainer';
 import mapStyle from './mapStyle.json'
 import Header from './Header';
 import Menu from './Menu.js'
-import InfoWindow from './InfoWindow';
-import Article from './Article.js'
 
 class App extends React.Component {
 
@@ -17,7 +15,6 @@ class App extends React.Component {
         lat: 52.245833,
         lng: 21.009167,
         nameForWikiURL: 'Monument_to_the_Heroes_of_Warsaw',
-        article: ''
       },
       {
         name: 'The Little Insurrectionist',
@@ -25,7 +22,6 @@ class App extends React.Component {
         lat: 52.249722,
         lng: 21.009444,
         nameForWikiURL: 'Ma%C5%82y_Powstaniec',
-        article: ''
       },
       {
         name: 'Warsaw Uprising Monument',
@@ -33,7 +29,6 @@ class App extends React.Component {
         lat: 52.249444,
         lng: 21.005833,
         nameForWikiURL: 'Warsaw_Uprising_Monument',
-        article: ''
       },
       {
         name: 'Monument to Victims of the Wola Massacre',
@@ -41,7 +36,6 @@ class App extends React.Component {
         lat: 52.238694,
         lng: 20.983514,
         nameForWikiURL: 'Monument_to_Victims_of_the_Wola_Massacre',
-        article: ''
       },
       {
         name: 'Warsaw Uprising Museum',
@@ -49,14 +43,13 @@ class App extends React.Component {
         lat: 52.232222,
         lng: 20.980833,
         nameForWikiURL: 'Warsaw_Uprising_Museum',
-        article: ''
       }
     ],
 
+    // Default center of the map. Later we'll be changing this
     center: {
       lat: 52.229676,
       lng: 21.012229
-      
     },
 
     openedInfoWindow: [],
@@ -69,13 +62,19 @@ class App extends React.Component {
 
     theArticle: '',
 
+    // Change to 'true' if error occurs
+    wikiError: false
+
   }
 
   // This function open correct InfoWindow
   openInfoWindow = (name, lat, lng, wikiUrl) => {
+
     this.setState({openedInfoWindow: [name, lat, lng]})
+
     // We also invoke getArticle function here because article should be fetched when we click on marker or on li in menu
     this.getArticle(wikiUrl)
+
     // Center map at the chosen mark
     this.setState(prevState => ({
       center: {
@@ -99,8 +98,6 @@ class App extends React.Component {
       this.setState({isMenuVisible: true})
     }
   }
-
-  
 
   search = (query) => {
     // This function can be invoked with an argument(query) or without. We can check this in this.state.searchSomething
@@ -164,21 +161,30 @@ class App extends React.Component {
 
        })
 
+       //Catch the errors
+       .catch(err => {
+         console.log(err)
+         this.setState({wikiError: true})
+       })
+
        //pass the article to the state
        this.setState({theArticle: fetchedArticle})
 
     }
-
 
   //Call search function to show all markers on the map before user use search functionality 
   componentDidMount(){
     this.search();
   }
 
-
   render() {
     return (
       <div className="App">
+
+        {/* if something went wrong with datas from Wikipedia. */}
+        {this.state.wikiError && (
+          alert('Oops! Something went wrong.')
+        )}
 
         {/*Render the Header component*/}
         <Header
@@ -209,10 +215,6 @@ class App extends React.Component {
           openArticle = {this.openArticle}
           center = {this.state.center}
         />
-
-        
-
-        
 
       </div>
     );
