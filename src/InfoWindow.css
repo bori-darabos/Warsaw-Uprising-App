@@ -1,0 +1,20 @@
+.info-window {
+    padding: 10px;
+}
+
+.info-window h2 {
+    margin-top: 0;
+    color: red;
+}
+
+.info-window article {
+    color: white; 
+    overflow: auto;
+    max-height: 120px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.info-window article p {
+    padding: 10px;
+}

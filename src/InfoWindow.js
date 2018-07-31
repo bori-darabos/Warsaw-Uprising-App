@@ -1,13 +1,18 @@
 import React from 'react';
 import closeIcon from './close.svg'
 import Article from './Article.js'
+import './InfoWindow.css'
 
 class InfoWindow extends React.Component{
 
   render(){
+
     
+    
+    
+
     return (
-        <div style={{
+        <div className='info-window' style={{
             width: '400px',
             height: '200px',
             backgroundColor: '#000',
@@ -29,9 +34,9 @@ class InfoWindow extends React.Component{
 
         </button>
 
-        <h2 style={{color: 'red', marginTop: '0'}}>{this.props.name}</h2>
+        <h2>{this.props.name}</h2>
 
-        <article dangerouslySetInnerHTML={{__html: this.props.theArticle[0] }} style={{color: '#fff', overflow: 'auto', maxHeight: '120px', margin: '10px 5px'}}>
+        <article dangerouslySetInnerHTML={{__html: this.props.theArticle[0] }}>
           
         </article>
 

@@ -1,0 +1,36 @@
+nav {
+    height: 92vh;
+    width: 20vw;
+    background-color: #000;
+    position: absolute;
+    top: 8vh;
+    right: 0;
+    z-index: 999;
+}
+
+nav input {
+    background: none;
+    border: none;
+    width: 90%;
+    height: 30px;
+    margin-top: 10px;
+    border-bottom: 1px solid red;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    color: #fff;
+    margin: 15px 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+    nav {
+        width: 100vw;
+    }
+}

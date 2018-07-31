@@ -53,6 +53,12 @@ class App extends React.Component {
       }
     ],
 
+    center: {
+      lat: 52.229676,
+      lng: 21.012229
+      
+    },
+
     openedInfoWindow: [],
 
     isMenuVisible: false,
@@ -70,6 +76,15 @@ class App extends React.Component {
     this.setState({openedInfoWindow: [name, lat, lng]})
     // We also invoke getArticle function here because article should be fetched when we click on marker or on li in menu
     this.getArticle(wikiUrl)
+    // Center map at the chosen mark
+    this.setState(prevState => ({
+      center: {
+          ...prevState.center,
+          lat: lat,
+          lng: lng
+      }
+    }))
+
   }
 
   closeInfoWindow = () => {
@@ -192,6 +207,7 @@ class App extends React.Component {
           theArticle = {this.state.theArticle}
           getArticle = {this.getArticle}
           openArticle = {this.openArticle}
+          center = {this.state.center}
         />
 
         

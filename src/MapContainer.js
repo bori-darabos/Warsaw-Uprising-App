@@ -5,11 +5,6 @@ import InfoWindow from './InfoWindow.js';
  
 class MapContainer extends React.Component {
   static defaultProps = {
-    center: {
-      lat: 52.229676,
-      lng: 21.012229
-      
-    },
     zoom: 13
   };
  
@@ -19,7 +14,7 @@ class MapContainer extends React.Component {
       <div style={{ height: '92vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyD9nEz4ZJK4zM41jMmz8nEXOWnia9bw-Qc' }}
-          defaultCenter={this.props.center}
+          center={this.props.center}
           defaultZoom={this.props.zoom}
 
           options={{ 
