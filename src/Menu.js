@@ -11,7 +11,7 @@ class Menu extends React.Component{
 
             <ul aria-label='list of locations' onClick={this.props.toggleMenuVisibility}>
                 {this.props.chosenLocations.map(location => (
-                    <li aria-role='button' key={location.id}>
+                    <li key={location.id}>
                         <button onClick={()=>this.props.openInfoWindow(location.name, location.lat, location.lng, location.nameForWikiURL)}>{location.name}</button>
                     </li>
                 ))}
