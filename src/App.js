@@ -5,6 +5,7 @@ import mapStyle from './mapStyle.json'
 import Header from './Header';
 import Menu from './Menu.js'
 import InfoWindow from './InfoWindow';
+import Article from './Article.js'
 
 class App extends React.Component {
 
@@ -15,35 +16,40 @@ class App extends React.Component {
         id: 'mon1',
         lat: 52.245833,
         lng: 21.009167,
-        nameForWikiURL: 'Monument_to_the_Heroes_of_Warsaw'
+        nameForWikiURL: 'Monument_to_the_Heroes_of_Warsaw',
+        article: ''
       },
       {
         name: 'The Little Insurrectionist',
         id: 'mon2',
         lat: 52.249722,
         lng: 21.009444,
-        nameForWikiURL: 'Ma%C5%82y_Powstaniec'
+        nameForWikiURL: 'Ma%C5%82y_Powstaniec',
+        article: ''
       },
       {
         name: 'Warsaw Uprising Monument',
         id: 'mon3',
         lat: 52.249444,
         lng: 21.005833,
-        nameForWikiURL: 'Warsaw_Uprising_Monument'
+        nameForWikiURL: 'Warsaw_Uprising_Monument',
+        article: ''
       },
       {
         name: 'Monument to Victims of the Wola Massacre',
         id: 'mon4',
         lat: 52.238694,
         lng: 20.983514,
-        nameForWikiURL: 'Monument_to_Victims_of_the_Wola_Massacre'
+        nameForWikiURL: 'Monument_to_Victims_of_the_Wola_Massacre',
+        article: ''
       },
       {
         name: 'Warsaw Uprising Museum',
         id: 'mon5',
         lat: 52.232222,
         lng: 20.980833,
-        nameForWikiURL: 'Warsaw_Uprising_Museum'
+        nameForWikiURL: 'Warsaw_Uprising_Museum',
+        article: ''
       }
     ],
 
@@ -53,7 +59,9 @@ class App extends React.Component {
 
     searchSomething: false,
 
-    chosenLocations: []
+    chosenLocations: [],
+
+    theArticle: '',
 
   }
 
@@ -75,7 +83,7 @@ class App extends React.Component {
     }
   }
 
-
+  
 
   search = (query) => {
     // This function can be invoked with an argument(query) or without. We can check this in this.state.searchSomething
@@ -117,9 +125,14 @@ class App extends React.Component {
     
   }
 
-    //This function getting an article about location and save the html code in ...?
-    getArticle = (nameOfLocation) => {
 
+    //This function getting an article about location and save the html code in this.state.theArticle
+    getArticle = (nameOfLocation) => {
+      
+      // We'll use this array to save the article and then pass it to the state 
+      let fetchedArticle = []
+
+      //Fetch the datas from Wiki using provided query
       fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts&titles=${nameOfLocation}&exintro=1`)
 
       .then(result => {
@@ -128,17 +141,23 @@ class App extends React.Component {
 
        .then(resultArticle => {
 
+        // Extract the article and save it in fetchedArticle array
         let article = resultArticle.query.pages[Object.keys(resultArticle.query.pages)[0]].extract;
-        console.log(article);
+        fetchedArticle.push(article)
 
        })
 
+       //pass the article to the state
+       this.setState({theArticle: fetchedArticle})
+
     }
+
 
   //Call search function to show all markers on the map before user use search functionality 
   componentDidMount(){
     this.search();
   }
+
 
   render() {
     return (
@@ -167,7 +186,15 @@ class App extends React.Component {
           logSomething = {this.logSomething}
           closeInfoWindow = {this.closeInfoWindow}
           chosenLocations = {this.state.chosenLocations}
+          theArticle = {this.state.theArticle}
+          getArticle = {this.getArticle}
+          openArticle = {this.openArticle}
         />
+
+        
+
+        
+
       </div>
     );
   }

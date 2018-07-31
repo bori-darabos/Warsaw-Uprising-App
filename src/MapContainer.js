@@ -33,9 +33,11 @@ class MapContainer extends React.Component {
             lat={location.lat}
             lng={location.lng}
             name={location.name}
-            logSomething={this.props.logSomething}
+            wikiURL={location.nameForWikiURL}
+            chosenLocations = {this.props.chosenLocations}
             openedInfoWindow={this.openedInfoWindow}
             openInfoWindow = {this.props.openInfoWindow}
+            getArticle = {this.props.getArticle}
         />
         ))}
 
@@ -46,6 +48,8 @@ class MapContainer extends React.Component {
           lng={this.props.openedInfoWindow[2]}
           name={this.props.openedInfoWindow[0]}
           closeInfoWindow = {this.props.closeInfoWindow}
+          theArticle = {this.props.theArticle}
+          openArticle = {this.props.openArticle}
         />
         )}
 
