@@ -25,9 +25,9 @@ class Menu extends React.Component{
                 color: '#fff'
             }}/>
 
-            <ul style={{listStyle: 'none', padding: '0'}}>
+            <ul style={{listStyle: 'none', padding: '0'}} onClick={this.props.toggleMenuVisibility}>
                 {this.props.chosenLocations.map(location => (
-                    <li onClick={()=>this.props.openInfoWindow(location.name, location.lat, location.lng)} key={location.id} style={{color: '#fff', margin: '15px 5px', cursor: 'pointer'}}>{location.name}</li>
+                    <li onClick={()=>this.props.openInfoWindow(location.name, location.lat, location.lng, location.nameForWikiURL)} key={location.id} style={{color: '#fff', margin: '15px 5px', cursor: 'pointer'}}>{location.name}</li>
                 ))}
             </ul>    
             

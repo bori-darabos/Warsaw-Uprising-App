@@ -66,8 +66,10 @@ class App extends React.Component {
   }
 
   // This function open correct InfoWindow
-  openInfoWindow = (name, lat, lng) => {
+  openInfoWindow = (name, lat, lng, wikiUrl) => {
     this.setState({openedInfoWindow: [name, lat, lng]})
+    // We also invoke getArticle function here because article should be fetched when we click on marker or on li in menu
+    this.getArticle(wikiUrl)
   }
 
   closeInfoWindow = () => {
@@ -75,7 +77,7 @@ class App extends React.Component {
   }
 
   // Show / hide menu 
-  toggleMenuVisibilty = () => {
+  toggleMenuVisibility = () => {
     if(this.state.isMenuVisible){
       this.setState({isMenuVisible: false})
     } else {
@@ -165,7 +167,7 @@ class App extends React.Component {
 
         {/*Render the Header component*/}
         <Header
-          toggleMenuVisibility = {this.toggleMenuVisibilty}
+          toggleMenuVisibility = {this.toggleMenuVisibility}
         />
 
         {/*If menu should be visible render the Menu component*/}
@@ -174,6 +176,7 @@ class App extends React.Component {
             search={this.search}
             chosenLocations={this.state.chosenLocations}
             openInfoWindow={this.openInfoWindow}
+            toggleMenuVisibility = {this.toggleMenuVisibility}
           />
         )}
 
