@@ -63,12 +63,14 @@ class App extends React.Component {
     theArticle: '',
 
     // Change to 'true' if error occurs
-    wikiError: false
+    wikiError: false,
+
+    activeLocation: []
 
   }
 
   // This function open correct InfoWindow
-  openInfoWindow = (name, lat, lng, wikiUrl) => {
+  openInfoWindow = (name, lat, lng, wikiUrl, id) => {
 
     this.setState({openedInfoWindow: [name, lat, lng]})
 
@@ -83,6 +85,21 @@ class App extends React.Component {
           lng: lng
       }
     }))
+
+    //animate the marker
+    const marker = document.getElementById(`${id}`)
+    marker.animate([
+      
+      { transform: 'translate(-50%, -100%)' }, 
+      { transform: 'translate(50%, -100%)' },
+      { transform: 'translate(-50%, -100%)' },
+      { transform: 'translate(-100%, -100%)' },
+      { transform: 'translate(-50%, -100%)' },
+      
+    ], { 
+      duration: 2000,
+      iterations: 1
+    });
 
   }
 
@@ -172,14 +189,30 @@ class App extends React.Component {
 
     }
 
+    // Check if map loaded correctly
+    catchMapError = () => {
+
+      setTimeout(() => {
+
+        const mapFrame = document.querySelector('iframe');
+  
+        if (!mapFrame) {
+          alert('Oops! Something went wrong with Google Maps.')
+        }
+
+      }, 2500);
+
+    }
+
   //Call search function to show all markers on the map before user use search functionality 
   componentDidMount(){
     this.search();
+    this.catchMapError();
   }
 
   render() {
     return (
-      <div className="App">
+      <main className="App">
 
         {/* if something went wrong with datas from Wikipedia. */}
         {this.state.wikiError && (
@@ -216,7 +249,7 @@ class App extends React.Component {
           center = {this.state.center}
         />
 
-      </div>
+      </main>
     );
   }
 }

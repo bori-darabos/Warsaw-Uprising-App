@@ -28,6 +28,7 @@ class MapContainer extends React.Component {
             lat={location.lat}
             lng={location.lng}
             name={location.name}
+            id={location.id}
             wikiURL={location.nameForWikiURL}
             chosenLocations = {this.props.chosenLocations}
             openedInfoWindow={this.openedInfoWindow}
